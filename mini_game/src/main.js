@@ -8,6 +8,7 @@ function loadItems() {
 function displayItems(items) {
   const container = document.querySelector(".items");
   container.innerHTML = items.map((item) => createHTMLString(item)).join("");
+  //console.log(items.map((item) => createHTMLString(item)));
 }
 
 function createHTMLString(item) {
@@ -21,6 +22,8 @@ function createHTMLString(item) {
 
 function onButtonClick(event, items) {
   const dataset = event.target.dataset;
+  console.log("event : ", event);
+  console.log("dataset : ", dataset);
   const key = dataset.key;
   const value = dataset.value;
 
@@ -29,7 +32,7 @@ function onButtonClick(event, items) {
   }
   //updateItems(items, key, value);
 
-  const filtered = items.filter((item) => item[key] === value);
+  const filtered = items.filter((item) => item[key] === value); //item[key] == item.type , value는 클릭한것의 data-value
   //console.log(filtered);
   displayItems(filtered);
 }
@@ -54,7 +57,7 @@ function setEventListners(items) {
 // main
 loadItems()
   .then((items) => {
-    console.log(items);
+    //console.log(items);
     displayItems(items);
     setEventListners(items);
   })
